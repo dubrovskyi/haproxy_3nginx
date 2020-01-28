@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+  haproxy:
+    build: docker-haproxy-nginx/haproxy/
+    depends_on:
+     - nginx1
+     - nginx2
+     - nginx3 
+    ports:
+     - '8080:8080'
+
+  nginx1:
+    build: docker-haproxy-nginx/nginx/
+    depends_on:
+      - logstash
+    volumes:
+      - ./nginx/log:/var/log/nginx
+
+  nginx2:
+    build: ./docker-haproxy-nginx/nginx/.
+    depends_on:
+      - logstash
+    volumes:
+      - ./nginx/log:/var/log/nginx
+
+  nginx3:
+    build: ./docker-haproxy-nginx/nginx/.
+    depends_on:
+      - logstash
+    volumes:
+      - ./nginx/log:/var/log/nginx

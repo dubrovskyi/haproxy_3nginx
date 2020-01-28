@@ -12,21 +12,15 @@ services:
 
   nginx1:
     build: docker-haproxy-nginx/nginx/
-    depends_on:
-      - logstash
     volumes:
       - ./nginx/log:/var/log/nginx
 
   nginx2:
     build: ./docker-haproxy-nginx/nginx/.
-    depends_on:
-      - logstash
     volumes:
       - ./nginx/log:/var/log/nginx
 
   nginx3:
     build: ./docker-haproxy-nginx/nginx/.
-    depends_on:
-      - logstash
     volumes:
       - ./nginx/log:/var/log/nginx
